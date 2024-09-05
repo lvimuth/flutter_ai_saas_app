@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<package="com.google_mlkit_text_recognition">
     <application
         android:label="flutter_ai_saas_app"
         android:name="${applicationName}"

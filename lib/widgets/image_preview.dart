@@ -23,11 +23,18 @@ class ImagePreview extends StatelessWidget {
       ),
       child: imagePath == null
           ? const Center(
-              child: Icon(Icons.image),
+              child: Icon(
+                Icons.image,
+                size: 250,
+                color: mainColor,
+              ),
             )
-          : Image.file(
-              File(imagePath!),
-              fit: BoxFit.contain,
+          : Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Image.file(
+                File(imagePath!),
+                fit: BoxFit.contain,
+              ),
             ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_ai_saas_app/widgets/image_preview.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
@@ -106,6 +107,22 @@ class _HomePageState extends State<HomePage> {
         });
   }
 
+  //Copy to Clipboard
+  void _copyToClipboard() async {
+    if (recognizedText.isNotEmpty) {
+      await Clipboard.setData(
+        ClipboardData(text: recognizedText),
+      );
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Text copied to clipboard'),
+          ),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,10 +147,10 @@ class _HomePageState extends State<HomePage> {
             ),
             if (!isImagePicked)
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: _showBottomSheetWidget,
+                    onPressed: isProcessing ? null : _showBottomSheetWidget,
                     child: const Text(
                       "Pick an Image",
                       style: TextStyle(color: Colors.white, fontSize: 18),
@@ -143,21 +160,91 @@ class _HomePageState extends State<HomePage> {
               ),
             if (isImagePicked)
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
-                    onPressed: _processImage,
-                    child: const Row(
+                    onPressed: recognizedText.isEmpty
+                        ? null
+                        : () {
+                            //+
+                            setState(() {
+                              pickedImagePath = null; // Clear the image
+                              recognizedText = ""; // Clear the recognized text
+                              isImagePicked = false;
+                            }); //+
+                          },
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          "Process Image",
+                        const Text(
+                          "Reset",
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       ],
                     ),
                   ),
+                  ElevatedButton(
+                    onPressed: isProcessing ? null : _processImage,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text(
+                          "Process Image",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        if (isProcessing) ...[
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          const SizedBox(
+                              width: 16,
+                              height: 16,
+                              child: CircularProgressIndicator())
+                        ]
+                      ],
+                    ),
+                  ),
                 ],
+              ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Recognized Text",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  IconButton(
+                    onPressed: _copyToClipboard,
+                    icon: const Icon(
+                      Icons.copy,
+                      size: 20,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            if (!isProcessing) ...[
+              Expanded(
+                child: Scrollbar(
+                  child: SingleChildScrollView(
+                    child: Row(
+                      children: [
+                        Flexible(
+                          child: SelectableText(recognizedText.isEmpty
+                              ? "No Text Recognized"
+                              : recognizedText),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               )
+            ]
           ],
         ),
       )),

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ai_saas_app/constants/colors.dart';
 import 'package:flutter_ai_saas_app/firebase_options.dart';
+import 'package:flutter_ai_saas_app/main_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: Scaffold(),
+      home: MainScreen(),
     );
   }
 }

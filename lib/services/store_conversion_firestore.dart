@@ -43,4 +43,27 @@ class StoreConversionFirestore {
       print("Error from firestore :$error");
     }
   }
+
+  // Method to get all conversion dcuments for the current user (Stream)
+  Stream<List<ConversionModel>> getUsersConversions() {
+    try {
+      final userId = _firebaseAuth.currentUser?.uid;
+
+      if (userId == null) {
+        throw Exception('No user is currently signed in.');
+      }
+      return _firebaseFirestore
+          .collection("conversions")
+          .where("userId", isEqualTo: userId)
+          .snapshots()
+          .map((snapshot) {
+        return snapshot.docs.map((doc) {
+          return ConversionModel.fromJson(doc.data());
+        }).toList();
+      });
+    } catch (error) {
+      print("Error from Stream :$error");
+      return Stream.empty();
+    }
+  }
 }

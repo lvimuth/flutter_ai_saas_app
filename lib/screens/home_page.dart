@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ai_saas_app/widgets/image_preview.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:flutter_ai_saas_app/services/store_conversion_firestore.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -59,6 +62,23 @@ class _HomePageState extends State<HomePage> {
       for (TextBlock block in textRecognizedFromModel.blocks) {
         for (TextLine line in block.lines) {
           recognizedText += "${line.text}\n";
+        }
+      }
+
+      if (recognizedText.isNotEmpty) {
+        try {
+          await StoreConversionFirestore().storeConversionData(
+            conversionData: recognizedText,
+            conversionDate: DateTime.now(),
+            imageFile: File(pickedImagePath!),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Text Recognized successfully"),
+            ),
+          );
+        } catch (e) {
+          print(e);
         }
       }
     } catch (error) {

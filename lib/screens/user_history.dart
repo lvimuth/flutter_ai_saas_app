@@ -41,8 +41,9 @@ class UserHistory extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(8),
@@ -96,6 +97,14 @@ class UserHistory extends StatelessWidget {
                           },
                         ),
                       ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Converted on: ${conversion.conversionDate.toLocal().toString().split('.')[0]}', //'Converted on: ${conversion.conversionDate.toLocal().toString().split(' ')[0]}',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
                     ),
                   ],
                 ),

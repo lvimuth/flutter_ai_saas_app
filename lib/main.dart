@@ -24,6 +24,8 @@ class MyApp extends StatelessWidget {
       title: "ML Text Recognition",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        progressIndicatorTheme:
+            const ProgressIndicatorThemeData(color: mainColor),
         fontFamily: GoogleFonts.poppins().fontFamily,
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(

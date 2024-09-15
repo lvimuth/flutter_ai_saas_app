@@ -44,10 +44,7 @@ This is a Flutter application developed as a Software-as-a-Service (SaaS) platfo
 2. Create a new branch for your feature or bug fix.
 3. Submit a pull request with a detailed description of your changes.
 
-<video width="600" controls>
-  <source src="https://github.com/lvimuth/flutter_ai_saas_app/blob/main/0915.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+[Click here to watch the demo video](https://github.com/lvimuth/flutter_ai_saas_app/blob/main/0915.mp4)
 
 ## License
 This project is licensed under the MIT License.

@@ -21,12 +21,12 @@ This is a Flutter application developed as a Software-as-a-Service (SaaS) platfo
 ## Installation Instructions
 1. Clone this repository: 
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/lvimuth/flutter_ai_saas_app
     ```
 2. Install Flutter and Dart on your machine by following the [official documentation](https://docs.flutter.dev/get-started/install).
 3. Navigate to the project directory:
     ```bash
-    cd <project-directory>
+    cd flutter_ai_saas_app
     ```
 4. Install dependencies:
     ```bash

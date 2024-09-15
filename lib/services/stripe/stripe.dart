@@ -59,7 +59,7 @@ Future<void> init({
     paymentStatus: 'active',
     startDate: DateTime.now(),
     endDate: DateTime.now().add(const Duration(days: 30)),
-    planId: 'price_1PtWVREdYSPMuFSGos2c0D1G',
+    planId: 'price_1PzFZcAdBAmyghjbJrqoKo0c',
     amountPaid: 4.99,
     currency: 'USD',
     paymentMethod: 'Credit Card',
@@ -143,7 +143,7 @@ Future<Map<String, dynamic>?> createSubscription(
     requestMethod: ApiServiceMethodType.post,
     requestBody: {
       'customer': customerId,
-      'items[0][price]': 'price_1PtWVREdYSPMuFSGos2c0D1G',
+      'items[0][price]': 'price_1PzFZcAdBAmyghjbJrqoKo0c',
       'default_payment_method': paymentId,
     },
   );

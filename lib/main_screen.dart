@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ai_saas_app/constants/colors.dart';
 import 'package:flutter_ai_saas_app/screens/conversion_history.dart';
 import 'package:flutter_ai_saas_app/screens/home_page.dart';
-import 'package:flutter_ai_saas_app/widgets/user_history.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

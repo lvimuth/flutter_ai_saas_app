@@ -18,11 +18,24 @@ class HistoryConversions extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('History Conversions',
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.white,
-            )),
+        title: const Text(
+          'History Conversions',
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+          ),
+        ),
+        actions: [
+          isPremiumProvider.isPremium
+              ? const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Icon(
+                    Icons.workspace_premium_outlined,
+                    color: Colors.yellowAccent,
+                  ),
+                )
+              : const SizedBox(),
+        ],
       ),
       body: isPremiumProvider.isPremium
           ? const UserHistoryWidget()

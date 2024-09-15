@@ -26,7 +26,7 @@ class HistoryConversions extends StatelessWidget {
       ),
       body: isPremiumProvider.isPremium
           ? const UserHistoryWidget()
-          : ShowPremiumPannel(),
+          : const ShowPremiumPannel(),
     );
   }
 }

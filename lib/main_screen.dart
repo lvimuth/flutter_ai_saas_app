@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ai_saas_app/constants/colors.dart';
+import 'package:flutter_ai_saas_app/screens/conversion_history.dart';
 import 'package:flutter_ai_saas_app/screens/home_page.dart';
-import 'package:flutter_ai_saas_app/screens/user_history.dart';
+import 'package:flutter_ai_saas_app/widgets/user_history.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -36,6 +37,8 @@ class _MainScreenState extends State<MainScreen> {
           selectedItemColor: const Color.fromARGB(255, 251, 254, 255),
           backgroundColor: mainColor,
         ),
-        body: _selectedIndex == 0 ? const HomePage() : UserHistory());
+        body: _selectedIndex == 0
+            ? const HomePage()
+            : const HistoryConversions());
   }
 }

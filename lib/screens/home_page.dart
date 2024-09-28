@@ -193,10 +193,10 @@ class _HomePageState extends State<HomePage> {
                               isImagePicked = false;
                             }); //+
                           },
-                    child: Row(
+                    child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text(
+                        Text(
                           "Reset",
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),

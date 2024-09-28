@@ -63,7 +63,7 @@ class StoreConversionFirestore {
       });
     } catch (error) {
       print("Error from Stream :$error");
-      return Stream.empty();
+      return const Stream.empty();
     }
   }
 }
